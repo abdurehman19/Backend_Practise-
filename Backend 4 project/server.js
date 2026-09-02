@@ -1,7 +1,14 @@
 const express = require('express')
+const connectDB = require('./db/db')
 const app = express()
-const port = 5000
-app.listen(port,()=>{
-    console.log("server is runnig",port);
-    
+const dotenv = require('dotenv')
+dotenv.config()
+const port = process.env.PORT
+
+
+connectDB()
+
+app.listen(port, () => {
+    console.log("server is runnig", port);
+
 })
