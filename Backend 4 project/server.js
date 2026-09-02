@@ -8,6 +8,13 @@ const port = process.env.PORT
 
 connectDB()
 
+app.use(express.json())
+
+app.post('/create-post',async(req,res)=>{
+    console.log(req.body);
+    
+})
+
 app.listen(port, () => {
     console.log("server is runnig", port);
 
