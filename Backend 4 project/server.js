@@ -1,6 +1,7 @@
 const express = require('express')
 const connectDB = require('./db/db')
 const app = express()
+const multer = require('multer')
 const dotenv = require('dotenv')
 dotenv.config()
 const port = process.env.PORT
@@ -10,8 +11,12 @@ connectDB()
 
 app.use(express.json())
 
-app.post('/create-post',async(req,res)=>{
+const upload = multer({storage:multer.memoryStorage()})
+
+app.post('/create-post',upload.single("image"), async(req,res)=>{
     console.log(req.body);
+    console.log(req.file);
+    
     
 })
 
