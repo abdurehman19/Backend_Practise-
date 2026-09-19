@@ -11,16 +11,17 @@ connectDB()
 
 app.use(express.json())
 
-const upload = multer({storage:multer.memoryStorage()})
+const upload = multer({ storage: multer.memoryStorage() })
 
-app.post('/create-post',upload.single("image"), async(req,res)=>{
+app.post('/create-post', upload.single("image"), async (req, res) => {
     console.log(req.body);
     console.log(req.file);
-    
-    
+
+
 })
 
 app.listen(port, () => {
     console.log("server is runnig", port);
 
 })
+
