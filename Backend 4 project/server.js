@@ -16,9 +16,16 @@ const upload = multer({ storage: multer.memoryStorage() })
 app.post('/create-post', upload.single("image"), async (req, res) => {
     console.log(req.body);
     console.log(req.file);
+    
 
 
 })
+
+
+app.get('/', (req, res) => {
+    res.send("Server is working");
+})
+
 
 app.listen(port, () => {
     console.log("server is runnig", port);
