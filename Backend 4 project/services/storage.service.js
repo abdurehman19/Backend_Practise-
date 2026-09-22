@@ -1,7 +1,8 @@
 const ImageKit = require ('@imagekit/nodejs')
+require('dotenv').config()
 
 const imagekit = new ImageKit({
-    privateKey: "private_tIRJO324R6e51704VQGJXEplJts="
+    privateKey: process.env.IMAGE_PRIVATE_KEY,
 })
 
 async function uploadFile(buffer) {
@@ -13,4 +14,4 @@ async function uploadFile(buffer) {
     return result;
 }
 
-module.exports = uploadFile
+module.exports = uploadFile;
