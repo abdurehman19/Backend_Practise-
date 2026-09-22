@@ -3,6 +3,7 @@ const connectDB = require('./db/db')
 const app = express()
 const multer = require('multer')
 const dotenv = require('dotenv')
+const uploadFile = require('./services/storage.service')
 dotenv.config()
 const port = process.env.PORT
 
@@ -17,7 +18,9 @@ app.post('/create-post', upload.single("image"), async (req, res) => {
     console.log(req.body);
     console.log(req.file);
     
-
+    const result = await uploadFile(req.file.buffer)
+    console.log(result);
+    
 
 })
 
