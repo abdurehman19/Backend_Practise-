@@ -7,3 +7,354 @@ body{
   font-family: 'Poppins', sans-serif;
   background-color: #f5f5f5;
 }
+/* .create-post-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: #f5f5f5;
+   
+}
+.create-post-section form{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center; 
+   background-color: #fff;
+   border-radius: 10px;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.create-post-section input[type="text"], .create-post-section textarea{
+   width: 100%;
+   padding: 10px;
+   margin: 10px 0;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   font-size: 16px;
+}  */
+
+
+/* ===== 🔥 KHATARNAK CREATE POST SECTION 🔥 ===== */
+.create-post-section {
+  position: relative;
+  max-width: 540px;
+  width: 100%;
+  margin: 4rem auto;
+  padding: 3rem 2.5rem;
+  background: #0a0a0f;
+  border-radius: 24px;
+  font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif;
+  color: #e5e7eb;
+  overflow: hidden;
+  isolation: isolate;
+  animation: floatIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Animated gradient border */
+.create-post-section::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 26px;
+  padding: 3px;
+  background: linear-gradient(
+    120deg,
+    #00f0ff,
+    #ff00e5,
+    #fffb00,
+    #00ff88,
+    #00f0ff
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 6s linear infinite;
+  z-index: -2;
+  filter: blur(0.5px);
+}
+
+/* Inner dark layer */
+.create-post-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: radial-gradient(
+      circle at 20% 0%,
+      rgba(0, 240, 255, 0.08),
+      transparent 40%
+    ),
+    radial-gradient(circle at 100% 100%, rgba(255, 0, 229, 0.1), transparent 45%),
+    #0a0a0f;
+  z-index: -1;
+}
+
+/* Neon glow pulse */
+.create-post-section {
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.15),
+    0 0 80px rgba(255, 0, 229, 0.1),
+    inset 0 0 60px rgba(0, 0, 0, 0.5);
+}
+
+.create-post-section:hover {
+  box-shadow: 0 0 60px rgba(0, 240, 255, 0.35),
+    0 0 120px rgba(255, 0, 229, 0.25),
+    inset 0 0 60px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.5s ease;
+}
+
+/* ===== Heading ===== */
+.create-post-section h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+  margin: 0 0 2rem 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #00f0ff, #ff00e5, #fffb00, #00f0ff);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 4s linear infinite;
+  text-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+  position: relative;
+}
+
+.create-post-section h1::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00f0ff, #ff00e5, transparent);
+  border-radius: 4px;
+  box-shadow: 0 0 15px #00f0ff, 0 0 30px #ff00e5;
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* ===== Form ===== */
+.create-post-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ===== File Input ===== */
+.create-post-section input[type='file'] {
+  width: 100%;
+  padding: 1.1rem;
+  border: 2px dashed rgba(0, 240, 255, 0.4);
+  border-radius: 14px;
+  background: rgba(0, 240, 255, 0.03);
+  color: #00f0ff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.create-post-section input[type='file']:hover {
+  border-color: #00f0ff;
+  background: rgba(0, 240, 255, 0.08);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.4),
+    inset 0 0 20px rgba(0, 240, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.create-post-section input[type='file']:focus {
+  outline: none;
+  border-color: #ff00e5;
+  box-shadow: 0 0 25px rgba(255, 0, 229, 0.5);
+}
+
+.create-post-section input[type='file']::file-selector-button {
+  padding: 0.6rem 1.2rem;
+  margin-right: 0.85rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #00f0ff, #ff00e5);
+  color: #0a0a0f;
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+}
+
+.create-post-section input[type='file']::file-selector-button:hover {
+  background: linear-gradient(135deg, #ff00e5, #fffb00);
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 0, 229, 0.8);
+}
+
+/* ===== Text Input ===== */
+.create-post-section input[type='text'] {
+  width: 100%;
+  padding: 1.15rem 1.25rem;
+  border: 2px solid rgba(0, 240, 255, 0.3);
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.4);
+  font-size: 0.95rem;
+  color: #e5e7eb;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  caret-color: #00f0ff;
+}
+
+.create-post-section input[type='text']::placeholder {
+  color: rgba(0, 240, 255, 0.5);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.create-post-section input[type='text']:hover {
+  border-color: rgba(0, 240, 255, 0.6);
+}
+
+.create-post-section input[type='text']:focus {
+  outline: none;
+  border-color: #00f0ff;
+  background: rgba(0, 240, 255, 0.05);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.5),
+    inset 0 0 15px rgba(0, 240, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ===== KHATARNAK Submit Button ===== */
+.create-post-section button[type='submit'] {
+  position: relative;
+  padding: 1.15rem 1.5rem;
+  margin-top: 0.5rem;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #00f0ff 0%, #ff00e5 50%, #fffb00 100%);
+  background-size: 200% 200%;
+  color: #0a0a0f;
+  font-size: 1.05rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.6),
+    0 0 50px rgba(255, 0, 229, 0.4),
+    inset 0 0 15px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  animation: gradientMove 3s linear infinite;
+}
+
+.create-post-section button[type='submit']::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.7),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.create-post-section button[type='submit']:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.9),
+    0 0 80px rgba(255, 0, 229, 0.7),
+    inset 0 0 20px rgba(255, 255, 255, 0.3);
+  letter-spacing: 5px;
+}
+
+.create-post-section button[type='submit']:hover::before {
+  left: 100%;
+}
+
+.create-post-section button[type='submit']:active {
+  transform: translateY(-1px) scale(0.99);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.8),
+    0 0 40px rgba(255, 0, 229, 0.6);
+}
+
+.create-post-section button[type='submit']:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(0, 240, 255, 0.4),
+    0 0 50px rgba(0, 240, 255, 0.8);
+}
+
+/* ===== Animations ===== */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  50% {
+    opacity: 0.6;
+    filter: blur(1px);
+  }
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .create-post-section {
+    margin: 2rem 1rem;
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+  }
+
+  .create-post-section h1 {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+
+  .create-post-section input[type='text'],
+  .create-post-section input[type='file'] {
+    padding: 0.95rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .create-post-section button[type='submit'] {
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+  }
+
+  .create-post-section button[type='submit']:hover {
+    letter-spacing: 3px;
+  }
+}
