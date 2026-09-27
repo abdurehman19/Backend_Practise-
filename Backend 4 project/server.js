@@ -4,7 +4,7 @@ const app = express()
 const multer = require('multer')
 const dotenv = require('dotenv')
 const uploadFile = require('./services/storage.service')
-const postmodol = require('./models/post.modol')
+const postmodel = require('./models/post.modol')
 dotenv.config()
 const port = process.env.PORT
 
@@ -22,7 +22,7 @@ app.post('/create-post', upload.single("image"), async (req, res) => {
     const result = await uploadFile(req.file.buffer)
     console.log(result);
 
-    const post = await postmodol.create({
+    const post = await postmodel.create({
         image: result.url,
         caption: req.body.caption
     })
@@ -37,6 +37,11 @@ app.post('/create-post', upload.single("image"), async (req, res) => {
 
 app.get('/posts', async (req, res) => {
     const posts = await postmodel.find()
+
+    return res.status(200).json({
+        message:"Posts fatch successfully",
+        posts
+    })
 })
 
 
