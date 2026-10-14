@@ -3,7 +3,9 @@ import axios from "axios"
 
 const Createpost = () => {
 
-  const handlesubmit 
+  const handlesubmit = async(e)=>{
+    e.preventDefault()
+  }
 
   return (
 
