@@ -3,8 +3,23 @@ import axios from "axios"
 
 const Createpost = () => {
 
-  const handlesubmit = async(e)=>{
+  const handlesubmit = async (e) => {
     e.preventDefault()
+
+
+    const formdata = new FormData(e.target)
+
+    axios.post("http://localhost:3000/create-post",formdata).then((res)=>{
+       console.log(res);
+       
+    })
+.catch((err)=>{
+  console.log(err);
+  alert("erroe creating post")
+  
+})
+    }
+
   }
 
   return (
@@ -15,11 +30,11 @@ const Createpost = () => {
 
       <form >
 
-         <input type="file" name='image' accept='image/*' />
+        <input type="file" name='image' accept='image/*' />
 
-         <input type="text" name='caption' placeholder='Enter Post Caption' required />
+        <input type="text" name='caption' placeholder='Enter Post Caption' required />
 
-         <button type='submit'>Submit</button>
+        <button type='submit'>Submit</button>
 
       </form>
 
