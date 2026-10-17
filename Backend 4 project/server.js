@@ -5,12 +5,13 @@ const multer = require('multer')
 const dotenv = require('dotenv')
 const uploadFile = require('./services/storage.service')
 const postmodel = require('./models/post.modol')
+const cors = require('cors')
 dotenv.config()
 const port = process.env.PORT
 
 
 connectDB()
-
+app.use(cors())
 app.use(express.json())
 
 const upload = multer({ storage: multer.memoryStorage() })
@@ -54,5 +55,4 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log("server is runnig", port);
 
-})
-
+})

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 
 const Feed = () => {
 
@@ -9,6 +10,15 @@ const Feed = () => {
             caption: "Test Image"
         }
     ])
+
+
+    useEffect(()=>{
+        axios.get("http://localhost:3000/posts")
+        .then((res)=>{
+
+            setPosts(res.data.posts)
+        })
+    },[])
     return (
         <section className='feed-section'>
           {posts.map((post) => (
