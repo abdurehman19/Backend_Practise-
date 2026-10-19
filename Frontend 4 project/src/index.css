@@ -358,7 +358,7 @@ body{
     letter-spacing: 3px;
   }
 }
-
+/* 
 .feed-section {
   max-width: 800px;
   margin: 2rem auto;
@@ -419,7 +419,7 @@ body{
 }
 
 /* Mobile: cards edge-to-edge */
-@media (max-width: 560px) {
+/* @media (max-width: 560px) {
   .feed-section {
     padding: 0 0 32px;
     gap: 12px;
@@ -430,6 +430,298 @@ body{
     border-left: 0;
     border-right: 0;
   }
+} */ 
+
+
+
+
+/* ============================================
+   FEED SECTION — Premium Layout
+   ============================================ */
+.feed-section {
+  --bg-card: #ffffff;
+  --border-soft: rgba(0, 0, 0, 0.06);
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+  --accent: #6366f1;
+  --accent-2: #ec4899;
+
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
+
+/* ============================================
+   POST CARD — Glass + Gradient Border
+   ============================================ */
+.post {
+  position: relative;
+  background: var(--bg-card);
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+
+  /* layered premium shadow */
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 4px 12px rgba(15, 23, 42, 0.05),
+    0 16px 40px -8px rgba(15, 23, 42, 0.08);
+
+  /* smooth transitions */
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+  animation: postEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform;
+}
+
+/* gradient border trick */
+.post::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.18),
+    rgba(236, 72, 153, 0.12),
+    rgba(99, 102, 241, 0)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+/* hover state */
+.post:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 2px 4px rgba(15, 23, 42, 0.05),
+    0 12px 24px rgba(15, 23, 42, 0.08),
+    0 32px 64px -12px rgba(99, 102, 241, 0.18);
+}
+
+.post:hover::before {
+  opacity: 1;
+}
+
+/* subtle glow behind card on hover */
+.post::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  opacity: 0;
+  filter: blur(24px);
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+.post:hover::after {
+  opacity: 0.12;
+}
+
+/* ============================================
+   IMAGE — Smooth Zoom on Hover
+   ============================================ */
+.post .image-wrap {
+  overflow: hidden;
+  position: relative;
+  background: #f1f5f9;
+}
+
+.post img {
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: center;
+}
+
+.post:hover img {
+  transform: scale(1.03);
+}
+
+/* gradient overlay at bottom of image */
+.post .image-wrap::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30%;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.06), transparent);
+  pointer-events: none;
+}
+
+/* ============================================
+   CAPTION — Refined Typography
+   ============================================ */
+.post p {
+  margin: 0;
+  padding: 18px 22px 20px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.005em;
+  position: relative;
+  z-index: 2;
+  background: var(--bg-card);
+}
+
+/* accent bar left of caption */
+.post p::before {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top: 18px;
+  width: 3px;
+  height: 0;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.post:hover p::before {
+  height: calc(1.6em - 4px);
+}
+
+.post:hover p {
+  padding-left: 34px;
+  transition: padding-left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ============================================
+   ENTRY ANIMATION
+   ============================================ */
+@keyframes postEnter {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* staggered delay for a nice cascade */
+.post:nth-child(1) { animation-delay: 0.02s; }
+.post:nth-child(2) { animation-delay: 0.08s; }
+.post:nth-child(3) { animation-delay: 0.14s; }
+.post:nth-child(4) { animation-delay: 0.20s; }
+.post:nth-child(5) { animation-delay: 0.26s; }
+.post:nth-child(n+6) { animation-delay: 0.32s; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+  .feed-section {
+    padding: 20px 12px 60px;
+    gap: 20px;
+  }
+
+  .post {
+    border-radius: 16px;
+  }
+
+  .post::before,
+  .post::after {
+    border-radius: 16px;
+  }
+
+  .post p {
+    padding: 15px 16px 17px;
+    font-size: 0.9rem;
+  }
+
+  .post p::before {
+    left: 16px;
+    top: 15px;
+  }
+
+  .post:hover p {
+    padding-left: 28px;
+  }
+
+  .post:hover {
+    transform: translateY(-3px);
+  }
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+  .feed-section {
+    --bg-card: #0f1419;
+    --border-soft: rgba(255, 255, 255, 0.08);
+    --text-primary: #f1f5f9;
+    --text-muted: #94a3b8;
+  }
+
+  body {
+    background: #06080b;
+  }
+
+  .post {
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.3),
+      0 4px 12px rgba(0, 0, 0, 0.25),
+      0 16px 40px -8px rgba(0, 0, 0, 0.4);
+  }
+
+  .post:hover {
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.35),
+      0 12px 24px rgba(0, 0, 0, 0.3),
+      0 32px 64px -12px rgba(99, 102, 241, 0.35);
+  }
+
+  .post .image-wrap {
+    background: #1a1f26;
+  }
+
+  .post p {
+    background: var(--bg-card);
+  }
+}
+
+/* ============================================
+   REDUCED MOTION (accessibility)
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .post,
+  .post img,
+  .post p,
+  .post p::before {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+
+
+
 
 

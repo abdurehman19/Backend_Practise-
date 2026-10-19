@@ -8,7 +8,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/create-post" element={<Createpost/>} />
-        <Route path="/feed" element={<Feed/>} />
+        <Route path="/" element={<Feed/>} />
         <Route path="/contact" element={<h1>Contact Page</h1>} />
       </Routes>
     </Router>
