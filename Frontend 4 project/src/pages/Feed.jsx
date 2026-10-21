@@ -20,6 +20,8 @@ const Feed = () => {
         })
     },[])
     return (
+ 
+
         <section className='feed-section'>
           {posts.map((post) => (
             <div key={post.id} className='post'>
