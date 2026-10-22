@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import Navbar from './Navbar'
 
 const Feed = () => {
 
@@ -20,9 +21,9 @@ const Feed = () => {
         })
     },[])
     return (
- 
 
         <section className='feed-section'>
+            <Navbar/>
           {posts.map((post) => (
             <div key={post.id} className='post'>
                 <img src={post.image} alt={post.caption} />
