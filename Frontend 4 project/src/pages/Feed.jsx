@@ -13,23 +13,23 @@ const Feed = () => {
     ])
 
 
-    useEffect(()=>{
+    useEffect(() => {
         axios.get("http://localhost:3000/posts")
-        .then((res)=>{
+            .then((res) => {
 
-            setPosts(res.data.posts)
-        })
-    },[])
+                setPosts(res.data.posts)
+            })
+    }, [])
     return (
 
         <section className='feed-section'>
-            <Navbar/>
-          {posts.map((post) => (
-            <div key={post.id} className='post'>
-                <img src={post.image} alt={post.caption} />
-                <p>{post.caption}</p>
-            </div>
-          ))}
+            <Navbar />
+            {posts.map((post) => (
+                <div key={post.id} className='post'>
+                    <img src={post.image} alt={post.caption} />
+                    <p>{post.caption}</p>
+                </div>
+            ))}
 
         </section>
 
